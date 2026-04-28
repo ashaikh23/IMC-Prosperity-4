@@ -9,7 +9,7 @@
 | **Total XIREC** | 185,187 / 200,000 | 482,188 / 200,000 | *TBD* | *TBD* | *TBD* |
 | **Overall Rank** | 858 / 5,893 **(Top 15%)** | 336 / 6,340 **(Top 5%)** | *TBD* | *TBD* | *TBD* |
 | **Algo Rank** | 1,177 / 5,707 | 1,891 / 6,123 | *TBD* | *TBD* | *TBD* |
-| **Manual Rank** | 1 / 312 *(Tied 1st)* | 21 / 2,480 | *TBD* | *TBD* | *TBD* |
+| **Manual Rank** | 1 / 312 | 21 / 2,480 | *TBD* | *TBD* | *TBD* |
 | **USA Rank** | 253 / 1,394 | 81 / 1,458 | *TBD* | *TBD* | *TBD* |
 
 ---
