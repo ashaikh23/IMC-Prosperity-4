@@ -2,7 +2,7 @@
 ## Team from Cornell
 
 ### 🏆 Competition Performance
-*Remark: Fantastic progress in Round 2! You jumped from the Top 15% to the Top 5% overall, driven by an exceptionally strong performance in the Manual trading section.*
+*Remark: Fantastic progress in Round 2! Jumped from Top 15% to Top 5%, driven by performance in Manual trading.*
 
 | Metric | Round 1 | Round 2 | Round 3 | Round 4 | Round 5 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -15,9 +15,9 @@
 ---
 
 ### 📚 Appendix: Open-Source Strategies & Top Teams
-*A curated list of repositories from historically top-performing teams to study for algorithmic strategies.*
+*A curated list of repositories from historically top-performing teams to study for algorithmic strategies that I used.*
 
-**IMC Prosperity 3 (Last Year)**
+**IMC Prosperity 3 (2025)**
 * 🥈 **Team Frankfurt Hedgehogs** (2nd Place) — [GitHub Repository](https://github.com/TimoDiehm/imc-prosperity-3)
 * 🏅 **Team CMU Physics** (7th Place) — [GitHub Repository](https://github.com/chrispyroberts/imc-prosperity-3)
 * 🏅 **Team Alpha Animals** (9th Place) — [GitHub Repository](https://github.com/CarterT27/imc-prosperity-3)
@@ -25,7 +25,7 @@
 * 🏅 **Team Ding Crab** (44th Place) — [GitHub Repository](https://github.com/angus4718/imc-prosperity-3-public)
 * 🧠 **Team 猫 [Neko]** (172nd Place / *2nd in Manual*) — [GitHub Repository](https://github.com/KengLL/Prosperity-3-Neko)
 
-**IMC Prosperity 2**
+**IMC Prosperity 2 (2024)**
 * 🥈 **Team Linear Utility** (2nd Place) — [GitHub Repository](https://github.com/ericcccsliu/imc-prosperity-2)
 
 ---
