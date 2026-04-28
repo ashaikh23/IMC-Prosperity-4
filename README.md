@@ -39,3 +39,21 @@
 
 **Tutorials**
 * **IMC Trading Official** — [Python for Beginners Playlist](https://www.youtube.com/playlist?list=PLrk7E_hqakTRHL02V-hxK2lDdblW12Apq)
+
+----
+What are the prizes?
+Overall top scores across both algorithmic & manual challenges:
+
+1st place: $25,000 USD
+
+2nd place: $10,000 USD
+
+3rd place: $5,000 USD
+
+4th place: $3,500 USD
+
+5th place: $1,500 USD
+
+Top score on manual challenge only:
+
+1st place: $5,000 USD
