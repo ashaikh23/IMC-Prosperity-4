@@ -14,3 +14,8 @@ IMC Prosperity 3 Top Teams
 
 Additional
 - Back Tester: [https://github.com/jmerle/imc-prosperity-3-backtester](https://github.com/GeyzsoN/prosperity_rust_backtester)
+
+- IMC Prosperity 4 Monte Carlo Backtester: https://github.com/chrispyroberts/imc-prosperity-4
+- - Video of IMC Prosperity 4 Monte Carlo Backtester: https://www.youtube.com/watch?v=Mi-vVCZ0Vo4
+
+- IMC Trading | Python for beginners: https://www.youtube.com/playlist?list=PLrk7E_hqakTRHL02V-hxK2lDdblW12Apq
