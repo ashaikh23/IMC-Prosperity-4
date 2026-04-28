@@ -1,5 +1,22 @@
 IMC Prosperity 4
-Unfinished
+
+IMC Prosperity 4 My Rankings
+————————
+Round 1:
+Total XIREC: 185,187/200,000
+Overall: 858/5893 (15th percentile)
+Algo: 1177/5707
+Manual: 1/312 (Lots of people had similar score)
+USA: 253/1394
+—————————
+Round 2:
+Total XIREC: 482,188/200,000
+Overall: 336/6340 (5th percentile)
+Algo: 1891/6123
+Manual: 21/2480
+USA: 81/1458
+------
+TBD Round 3,4,5
 
 Appendix:
 
