@@ -1,10 +1,5 @@
-Here is a cleaner, more professional, and highly readable version of your notes. 
-
-I’ve organized your competition performance into a comparison table (which makes tracking your progress much easier), corrected "percentile" to "Top %" to better reflect your high standing, and categorized your appendix resources so they are easy to reference.
-
-***
-
-# 📈 IMC Prosperity 4: Performance Tracker & Resources
+# 📈 IMC Prosperity 4
+## Team from Cornell
 
 ### 🏆 Competition Performance
 *Remark: Fantastic progress in Round 2! You jumped from the Top 15% to the Top 5% overall, driven by an exceptionally strong performance in the Manual trading section.*
