@@ -41,7 +41,7 @@
 * **IMC Trading Official** — [Python for Beginners Playlist](https://www.youtube.com/playlist?list=PLrk7E_hqakTRHL02V-hxK2lDdblW12Apq)
 
 ----
-What are the prizes?
+What are the prizes the compititon give? (Note I got none just for reference)
 Overall top scores across both algorithmic & manual challenges:
 
 1st place: $25,000 USD
