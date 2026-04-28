@@ -1,7 +1,6 @@
 IMC Prosperity 4
 
-IMC Prosperity 4 My Rankings
-————————
+
 Round 1:
 Total XIREC: 185,187/200,000
 Overall: 858/5893 (15th percentile)
@@ -16,6 +15,7 @@ Algo: 1891/6123
 Manual: 21/2480
 USA: 81/1458
 ------
+
 TBD Round 3,4,5
 
 Appendix:
