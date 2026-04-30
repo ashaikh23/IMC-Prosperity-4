@@ -40,8 +40,9 @@
 * **Enhanced visualizer for IMC Prosperity 4 backtests** by *Xeeshan85* * [Site](https://xeeshan85.github.io/imc-prosperity-4-backtester/)
 * **Prosperity 4 Monte Carlo Backtester** by *chrispyroberts* * [GitHub Repository](https://github.com/chrispyroberts/imc-prosperity-4)
     * [▶️ Video Walkthrough](https://www.youtube.com/watch?v=Mi-vVCZ0Vo4)
-* **Prosperity 3 Rust Backtester** by *jmerle / GeyzsoN* * [GitHub Repository](https://github.com/GeyzsoN/prosperity_rust_backtester)
+* **Prosperity 4 Rust Backtester** by *jmerle / GeyzsoN* * [GitHub Repository](https://github.com/GeyzsoN/prosperity_rust_backtester)
    * Prosperity Visualizer Site** by *GeyzsoN* * [Site](https://prosperity.equirag.com)
+ 
 **Tutorials**
 * **IMC Trading Official** — [Python for Beginners Playlist](https://www.youtube.com/playlist?list=PLrk7E_hqakTRHL02V-hxK2lDdblW12Apq)
 
