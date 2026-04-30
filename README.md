@@ -45,8 +45,8 @@
  
 **IMC Trading Official Links**
 * **Python Tutorial** — [Python for Beginners Playlist](https://www.youtube.com/playlist?list=PLrk7E_hqakTRHL02V-hxK2lDdblW12Apq)
-* **Prosperity 4 Wiki** — [Notion](https://imc-prosperity.notion.site))
-* **Prosperity Offical Website** — [Site](https://prosperity.imc.com/game))
+* **Prosperity 4 Wiki** — [Notion](https://imc-prosperity.notion.site)
+* **Prosperity Offical Website** — [Site](https://prosperity.imc.com/game)
 
 ----
 What are the prizes the compititon give? (Note I got none just for reference)
