@@ -49,7 +49,7 @@
 * **Prosperity Offical Website** — [Site](https://prosperity.imc.com/game)
 
 ----
-What are the prizes the compititon give? (Note I got none just for reference)
+What are the prizes the compititon give? (I got none just for reference)
 Overall top scores across both algorithmic & manual challenges:
 
 1st place: $25,000 USD
