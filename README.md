@@ -23,10 +23,11 @@
 * 🏅 **Team Alpha Animals** (9th Place) — [GitHub Repository](https://github.com/CarterT27/imc-prosperity-3)
 * 🏅 **Team camel_case** (25th Place) — [GitHub Repository](https://github.com/jmerle/imc-prosperity-3)
 * 🏅 **Team Ding Crab** (44th Place) — [GitHub Repository](https://github.com/angus4718/imc-prosperity-3-public)
-* 🧠 **Team 猫 [Neko]** (172nd Place / *2nd in Manual*) — [GitHub Repository](https://github.com/KengLL/Prosperity-3-Neko)
+* 🧠 **Team 猫** (172nd Place / *2nd in Manual*) — [GitHub Repository](https://github.com/KengLL/Prosperity-3-Neko)
 
 **IMC Prosperity 2 (2024)**
-* 🥈 **Team Linear Utility** (2nd Place) — [GitHub Repository](https://github.com/ericcccsliu/imc-prosperity-2)
+* **Team Linear Utility** (2nd Place) — [GitHub Repository](https://github.com/ericcccsliu/imc-prosperity-2)
+* **Team camel_case** (9th Place) — [GitHub Repository](https://github.com/jmerle/imc-prosperity-2)
 
 **IMC Prosperity 1 (2023)**
 * **Stanford Cardinal** (2nd Place) — [GitHub Repository](https://github.com/ShubhamAnandJain/IMC-Prosperity-2023-Stanford-Cardinal)
