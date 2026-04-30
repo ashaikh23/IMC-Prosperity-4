@@ -28,6 +28,9 @@
 **IMC Prosperity 2 (2024)**
 * 🥈 **Team Linear Utility** (2nd Place) — [GitHub Repository](https://github.com/ericcccsliu/imc-prosperity-2)
 
+**IMC Prosperity 1 (2023)**
+* **Stanford Cardinal** (2nd Place) — [GitHub Repository](https://github.com/ShubhamAnandJain/IMC-Prosperity-2023-Stanford-Cardinal)
+
 ---
 
 ### 🛠️ Tooling & Educational Resources
