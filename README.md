@@ -37,6 +37,7 @@
 ### 🛠️ Tooling & Educational Resources
 
 **Backtesting Engines**
+* **Enhanced visualizer for IMC Prosperity 4 backtests** by *Xeeshan85* * [Site](https://xeeshan85.github.io/imc-prosperity-4-backtester/)
 * **Prosperity 4 Monte Carlo Backtester** by *chrispyroberts* * [GitHub Repository](https://github.com/chrispyroberts/imc-prosperity-4)
     * [▶️ Video Walkthrough](https://www.youtube.com/watch?v=Mi-vVCZ0Vo4)
 * **Prosperity 3 Rust Backtester** by *jmerle / GeyzsoN* * [GitHub Repository](https://github.com/GeyzsoN/prosperity_rust_backtester)
