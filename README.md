@@ -3,7 +3,7 @@
 
 ### 🏆 Competition Performance
 
-*Remark: Fantastic progress in Round 2 — jumped from Top 15% to Top 5%, driven heavily by Manual trading performance. Round 3 was not a real attempt because I had homework due, submitted random code, and skipped Manual.*
+
 
 | Metric | Round 1 | Round 2 | Round 3 | Round 4 | Round 5 / Final |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -15,6 +15,7 @@
 
 > **Note:** 200,000+ XIRECs were required to advance to Round 3.  
 > Round 3 was not a serious attempt: I had homework due, submitted random code, and did not participate in Manual trading.
+> Round 5 was not a serious attempt: Final projects were due so I submitted random attempts
 
 ---
 
