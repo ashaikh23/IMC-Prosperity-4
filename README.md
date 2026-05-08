@@ -1,5 +1,5 @@
 # 📈 IMC Prosperity 4
-## Team from Cornell
+## Team: CornellTech
 
 ### 🏆 Competition Performance
 
