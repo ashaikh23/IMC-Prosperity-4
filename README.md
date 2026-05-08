@@ -394,46 +394,6 @@ Suggested notes to include:
 
 </details>
 
-### 📝 IMC Official Note on Hardcoding
-
-> “Posted in general but repeating here: We received a few questions surrounding hardcoding so just want to clarify: when hardcoding demonstrates smart reverse engineering of bots and their trading behavior, or uses it to define parameters for your own trading behavior, we consider this solid work. Hardcoding that includes pricing data, references external data, exploitation of platform bugs, or uses non-public information would be considered grounds for disqualification in Prosperity, as what happened in Prosperity 3 last year. However, if you’ve hardcoded every timestamp and your algo results in an outlier PnL, we’d consider this suspicious. Regardless, we manually review the top submissions as well to ensure all looks in order. In short, being smart is fine. Going against the spirit of Prosperity is not!”
-
-— **Synthia_Admin**, 4/26/26, 10:15 AM
-
----
-
-### ⚡ Prosperity 4 Light-Speed Overview
-
-| Metric | Value |
-| :--- | :--- |
-| **Competing Players** | 30,703 |
-| **Competing Teams** | 18,803 |
-| **Countries Represented** | 117 |
-| **Average XIRECs Earned per Round** | 52,675 |
-
----
-
-### 🎁 Competition Prizes
-
-I did not receive a prize, but the official prize structure was:
-
-#### Overall Top Scores  
-Across both algorithmic and manual challenges:
-
-| Place | Prize |
-| :--- | :--- |
-| **1st Place** | $25,000 USD |
-| **2nd Place** | $10,000 USD |
-| **3rd Place** | $5,000 USD |
-| **4th Place** | $3,500 USD |
-| **5th Place** | $1,500 USD |
-
-#### Manual Challenge Prize
-
-| Category | Prize |
-| :--- | :--- |
-| **Top Manual Challenge Score** | $5,000 USD |
-
 ---
 
 ### 📚 Appendix: Open-Source Strategies & Top Teams
@@ -475,3 +435,45 @@ Across both algorithmic and manual challenges:
 * **Python Tutorial** — [Python for Beginners Video Playlist](https://www.youtube.com/playlist?list=PLrk7E_hqakTRHL02V-hxK2lDdblW12Apq)
 * **Prosperity 4 Wiki** — [Notion](https://imc-prosperity.notion.site)
 * **Prosperity Official Website** — [Site](https://prosperity.imc.com/game)
+
+
+### 📝 IMC Official Note on Hardcoding
+
+> “Posted in general but repeating here: We received a few questions surrounding hardcoding so just want to clarify: when hardcoding demonstrates smart reverse engineering of bots and their trading behavior, or uses it to define parameters for your own trading behavior, we consider this solid work. Hardcoding that includes pricing data, references external data, exploitation of platform bugs, or uses non-public information would be considered grounds for disqualification in Prosperity, as what happened in Prosperity 3 last year. However, if you’ve hardcoded every timestamp and your algo results in an outlier PnL, we’d consider this suspicious. Regardless, we manually review the top submissions as well to ensure all looks in order. In short, being smart is fine. Going against the spirit of Prosperity is not!”
+
+— **Synthia_Admin**, 4/26/26, 10:15 AM
+
+---
+
+### ⚡ Prosperity 4 Light-Speed Overview
+
+| Metric | Value |
+| :--- | :--- |
+| **Competing Players** | 30,703 |
+| **Competing Teams** | 18,803 |
+| **Countries Represented** | 117 |
+| **Average XIRECs Earned per Round** | 52,675 |
+
+---
+
+### 🎁 Competition Prizes
+
+I did not receive a prize, but the official prize structure was:
+
+#### Overall Top Scores  
+Across both algorithmic and manual challenges:
+
+| Place | Prize |
+| :--- | :--- |
+| **1st Place** | $25,000 USD |
+| **2nd Place** | $10,000 USD |
+| **3rd Place** | $5,000 USD |
+| **4th Place** | $3,500 USD |
+| **5th Place** | $1,500 USD |
+
+#### Manual Challenge Prize
+
+| Category | Prize |
+| :--- | :--- |
+| **Top Manual Challenge Score** | $5,000 USD |
+
