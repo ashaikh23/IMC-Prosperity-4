@@ -38,11 +38,11 @@
 
 **IMC Prosperity 4** is IMC’s global online trading challenge for university students interested in algorithmic trading, financial markets, and quantitative strategy. IMC is a global trading firm focused on quant research, technology, and trading, which fits the competition’s emphasis on coding, market-making, and data-driven decision-making. :contentReference[oaicite:0]{index=0}
 
-In Prosperity 4, teams compete in a fictional space-themed trading simulation where they travel to **Intara**, build a trading outpost, and try to earn as many **XIRECs**, the in-game currency, as possible. The challenge combines **algorithmic trading**, where teams submit Python trading bots, with **manual trading**, where teams solve auction, pricing, optimization, and market-reasoning challenges. :contentReference[oaicite:1]{index=1}
+In Prosperity 4, teams compete in a fictional space-themed trading simulation where they travel to **Intara**, build a trading outpost, and try to earn as many **XIRECs**, the in-game currency, as possible. The challenge combines **algorithmic trading**, where teams submit Python trading bots, with **manual trading**, where teams solve auction, pricing, optimization, and market-reasoning challenges. 
 
-The competition lasts **16 days** and is divided into **5 trading rounds**. Rounds 1 and 2 each last 72 hours, followed by a four-day intermission, while Rounds 3, 4, and 5 each last 48 hours. Teams must submit both algorithmic and manual strategies before each round closes, and the final leaderboard is based on total XIRECs earned across the competition. :contentReference[oaicite:2]{index=2}
+The competition lasted **16 days** and is divided into **5 trading rounds**. Rounds 1 and 2 each last 72 hours, followed by a four-day intermission, while Rounds 3, 4, and 5 each last 48 hours. Teams must submit both algorithmic and manual strategies before each round closes, and the final leaderboard is based on total XIRECs earned across the competition.
 
-A key milestone in Prosperity 4 was earning at least **200,000 XIRECs by the end of Round 2**, which was required to continue into the later phase of the competition. The overall winner is the team with the highest total profit after the final round. :contentReference[oaicite:3]{index=3}
+A key milestone in Prosperity 4 was earning at least **200,000 XIRECs by the end of Round 2**, which was required to continue into the later phase of the competition. The overall winner is the team with the highest total profit after the final round.
 
 ### 📝 IMC Official Note on Hardcoding
 
