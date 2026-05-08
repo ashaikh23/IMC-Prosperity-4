@@ -48,9 +48,7 @@
 | :--- | :--- |
 | **Competing Players** | 30,703 |
 | **Competing Teams** | 18,803 |
-| **Universities Represented** | 1,549 |
 | **Countries Represented** | 117 |
-| **Total XIRECs Earned by All Teams** | 1,153,901,776 |
 | **Average XIRECs Earned per Round** | 52,675 |
 
 ---
