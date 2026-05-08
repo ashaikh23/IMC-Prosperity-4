@@ -88,7 +88,7 @@ Across both algorithmic and manual challenges:
 
 ### 📚 Appendix: Open-Source Strategies & Top Teams
 
-*A curated list of repositories from historically top-performing teams to study for algorithmic strategies that I used.*
+*A curated list of repositories from historically top-performing teams to study for algorithmic strategies.*
 
 #### IMC Prosperity 3, 2025
 
