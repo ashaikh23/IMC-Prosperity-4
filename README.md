@@ -19,6 +19,24 @@
 
 ---
 
+### 🏅 Competition Badges
+
+I earned **13 of the 27 total badges** available for completing various challenges and milestones throughout the competition. The badge images are in this folder: [IMC Trading CornellTech Badges Images](https://github.com/ashaikh23/IMC-Prosperity-4/tree/main/IMC%20Trading%20CornellTech%20Badges%20Images)
+
+---
+
+### 🖼️ Round 1 Visuals
+
+#### Manual Trade Order (Dryland Flax & Ember Mushroom)
+
+![Round 1 Manual Trade Order](Round_1_Manual_Trade_Image.png)
+
+#### Algorithmic Challenge PnL Curve
+
+![Round 1 Algo Challenge PnL](Round_1_Algo_Challenge_Image.png)
+
+---
+
 ### 📊 Final Round 5 Breakdown
 
 | Category | Result |
@@ -476,4 +494,3 @@ Across both algorithmic and manual challenges:
 | Category | Prize |
 | :--- | :--- |
 | **Top Manual Challenge Score** | $5,000 USD |
-
