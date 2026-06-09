@@ -460,19 +460,117 @@ Suggested notes to include:
 
 ### 🧩 Round 4 Strategy Explanation
 
-_Add your Round 4 approach here._
+Round 4 continued the same algorithmic products as Round 3 (`HYDROGEL_PACK`, `VELVETFRUIT_EXTRACT`, and the 10 `VELVETFRUIT_EXTRACT_VOUCHER` options), but with counterparty IDs now disclosed in the trade data. The separate manual challenge was a standalone exotic-options book on a new underlying, `AETHER_CRYSTAL`. This was my second-best algorithmic round, ending at **134,387 PnL** with a steadily climbing equity curve.
 
-Suggested structure:
+#### High-Level Strategy Components
 
-| Section | What to Explain |
+| Component | What It Did |
 | :--- | :--- |
-| **Products traded** | Which products or market mechanics were active. |
-| **Core hypothesis** | What pattern you believed existed in the data. |
-| **Modeling approach** | Any fair-value, regression, spread, or signal logic used. |
-| **Execution logic** | How the algorithm translated predictions into orders. |
-| **Risk controls** | How you handled position limits and inventory. |
-| **Manual challenge** | How you approached the manual component. |
-| **Result reflection** | Why performance improved or declined compared with earlier rounds. |
+| **Time-Regime Take-Liquidity Model** | Crossed the spread only when displayed prices breached time-bucketed fair-value bands. |
+| **Public vs. Hidden Parameter Split** | Used fine 10k-step bands on the known public path and coarser bands on the longer final/hidden simulation. |
+| **Crossing-Only Execution** | Took only displayed liquidity; never quoted passively. |
+| **Manual Exotics Book** | Constructed hedged positions across vanilla, chooser, binary-put, and knock-out options on `AETHER_CRYSTAL`. |
+
+---
+
+#### 1. Core Idea: Asymmetric Take-Liquidity Bands
+
+The algorithm was deliberately simple and robust. For each product it held two thresholds — a `buy_below` price and a `sell_above` price — and only ever crossed the spread:
+
+```python
+# Buy asks strictly below buy_below
+for ask, vol in sorted(depth.sell_orders.items()):
+    if ask >= buy_below or room <= 0:
+        break
+    ...
+# Sell bids strictly above sell_above
+for bid, vol in sorted(depth.buy_orders.items(), reverse=True):
+    if bid <= sell_above or room <= 0:
+        break
+    ...
+```
+
+The thresholds were asymmetric (the buy and sell triggers weren't symmetric around a single midpoint), which let the bot lean directionally per product and per time regime.
+
+The key design decision, noted directly in the code, was that **passive orders get adverse-selected** — so the bot never posted resting quotes. It only ever lifted cheap asks or hit rich bids when the displayed price was clearly favorable versus the regime's fair-value estimate.
+
+---
+
+#### 2. Time-Regime Parameter Tables
+
+Rather than computing fair value live, I hard-coded fair-value bands per product across **ten 10,000-step time buckets** of the public tester path. Each product's center drifted over time — for example, `VELVETFRUIT_EXTRACT` moved from ~5,295 early to ~5,250 in the middle regimes, and the deep-ITM/OTM vouchers (`VEV_5300`, `VEV_5400`, `VEV_5500`) had their own evolving thresholds reflecting option time-decay.
+
+This finer bucketing was the main refinement over the previous build: it removed "missed sub-regime" behavior inside the coarser 20k buckets of an earlier version, especially for VELVET, the mid-strike vouchers, and HYDROGEL.
+
+---
+
+#### 3. Public vs. Hidden Path Handling
+
+A crucial robustness choice was splitting parameters by whether the simulation was on the known public path or the longer hidden/final one:
+
+```python
+params = self._public_params(state.timestamp) if state.timestamp <= 100000 else self._post_public_params(state.timestamp)
+```
+
+The public bands were tightly fit to 10k windows. The `_post_public_params` fallback was **intentionally coarser** (three wide buckets up to 400k / 700k / beyond), because the final simulation runs much longer and overfitting tiny windows there is unreliable. As the code notes, counterparty/mark IDs were most useful not for chasing individual trades but for *discovering that these time regimes existed* in the first place — the IDs revealed the structure, and the bands encoded it.
+
+---
+
+#### 4. Use of Counterparty Information
+
+The Round 4 twist was disclosed `buyer`/`seller` IDs in the trade history. I used this primarily as a **research signal** rather than a live trading input: studying which participants traded at which times exposed the time-regime boundaries and the recurring fair-value levels, which I then baked into the parameter tables. The live `run` loop itself stayed lean — it didn't branch on counterparty identity, keeping execution fast and avoiding overfitting to specific bots.
+
+---
+
+#### 5. The 10 Vouchers (Options)
+
+The vouchers were treated as independent delta-1-style products with their own bands rather than priced live off a Black-Scholes model. Because each voucher's strike and remaining time-to-expiry pinned its value into a fairly tight range within each time bucket, the band approach captured most of the edge: deep-ITM vouchers like `VEV_4000` sat near ~1,250, while far-OTM ones like `VEV_5500` hovered near 0–6. The position limit of 300 per voucher was respected through the same `room` tracking used for the delta-1 products.
+
+---
+
+#### 6. Manual Challenge: "Vanilla Just Isn't Exotic Enough"
+
+The standalone manual challenge was a one-shot book on `AETHER_CRYSTAL` (spot ≈ 50), simulated as zero-drift GBM at **251% annualized vol** on a discrete 4-steps-per-day grid. The catch: positions are bought/sold at t=0 and held to expiry, marked against the average payoff over 100 simulations — so the goal was positive *expected* PnL with controlled risk, not directional bets.
+
+My submitted positions (total investment −737, i.e. a net credit) were:
+
+| Contract | Type | Action | Vol |
+| :--- | :--- | :--- | :--- |
+| `AC_60_C` | 3wk OTM call | Sell | 50 |
+| `AC_50_P_2` | 2wk ATM put | Buy | 50 |
+| `AC_50_C_2` | 2wk ATM call | Buy | 50 |
+| `AC 50 CO` | Chooser | Sell | 50 |
+| `AC 40 BP` | Binary put | Sell | 50 |
+| `AC 45 KO` | Knock-out put | Buy | 500 |
+
+The reasoning behind the mix:
+
+The **2-week ATM straddle** (`AC_50_P_2` + `AC_50_C_2` both bought) is a long-volatility position. With 251% annualized vol, the underlying moves enormously over 10 trading days, so a long straddle captures large realized moves in either direction — the dominant edge in an extremely high-vol regime.
+
+**Selling the chooser** (`AC 50 CO`) and the **3-week OTM call** (`AC_60_C`) financed the straddle. The chooser is expensive because optionality-to-choose is valuable, so selling it harvests premium; pairing it against the long straddle partially offsets the vega and reduces unhedged exposure.
+
+**Selling the binary put** (`AC 40 BP`, all-or-nothing below 40) collected premium on a tail that, under zero-drift GBM, is less likely to finish deep below strike than its price implied.
+
+**Buying the knock-out put cheaply** (`AC 45 KO` at ~0.175, 500 units) was a low-cost convex hedge: it pays like a put unless the barrier is breached, so it provided downside protection at minimal cost while the high contract-size multiplier (3000) scaled the payoff.
+
+The overall book was structured as long realized volatility, financed by selling richer optionality, with a cheap knock-out as a tail hedge — net credit at entry.
+
+---
+
+#### 7. Risk Management
+
+| Risk Control | How It Worked |
+| :--- | :--- |
+| **Position Limits** | 200 for the two delta-1 products, 300 per voucher; tracked via `room` on both sides. |
+| **Crossing-Only** | No resting quotes, eliminating adverse-selection on passive fills. |
+| **Coarse Hidden Bands** | Wider fallback bands on the final simulation to avoid overfitting. |
+| **Manual Hedging** | The exotic book paired long straddle vega against sold optionality plus a cheap knock-out hedge. |
+
+---
+
+#### 8. Result Reflection
+
+Round 4 recovered strongly from the skipped Round 3: **134,387 algorithmic PnL**, ranking 1,236th on the algo challenge, with the equity curve grinding upward through the whole session. The take-liquidity-only, time-bucketed band approach proved robust precisely because it was simple and avoided passive adverse selection. The biggest lesson was that the disclosed counterparty IDs were more valuable as a *reverse-engineering tool* for discovering regime structure than as a live input — and that on the longer hidden path, deliberately coarsening the parameters protected against overfitting.
 
 </details>
 
