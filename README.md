@@ -442,16 +442,30 @@ Round 2 was my strongest round: **336th overall (Top 5%)**, 21st in Manual, and 
 
 ### 🧩 Round 3 Strategy Explanation
 
-Round 3 was not a serious attempt because I had homework due. I submitted random code and did not participate in the manual challenge.
+> **Note:** Round 3 was not a serious attempt. I had homework due, submitted random/low-effort code, and did not participate in the manual challenge. The section below documents what the round *was*, for completeness, alongside my actual (non-)result.
 
-Suggested notes to include:
+#### What the Round Was
+
+Round 3 ("Gloves Off") kicked off Phase 2 of the competition — the **Great Orbital Ascension Trials** — where all teams reset to zero PnL and the leaderboard restarted. It introduced three new algorithmic products and a manual auction.
+
+| Product | Type | Position Limit |
+| :--- | :--- | :--- |
+| `HYDROGEL_PACK` | Delta-1 | 200 |
+| `VELVETFRUIT_EXTRACT` | Delta-1 | 200 |
+| `VELVETFRUIT_EXTRACT_VOUCHER` (×10) | Options on VEV | 300 each |
+
+The 10 vouchers (`VEV_4000` through `VEV_6500`) were call-style options at different strikes, all sharing a 7-day expiry measured from Round 1 — so by Round 3 the time-to-expiry was 5 days. Vouchers couldn't be exercised early, and no inventory carried between rounds; open positions were liquidated against a hidden fair value at round end.
+
+The manual challenge ("The Celestial Gardeners' Guild") was a two-bid auction against counterparties with reserve prices uniformly distributed in increments of 5 between 670 and 920. Acquired Bio-Pods could be resold at a fair price of 920. The second bid carried a cube-penalty if it fell at or below the average of all players' second bids, making it a game-theory problem of bidding high enough to clear reserves without overpaying relative to the field.
+
+#### What I Actually Did
 
 | Area | Explanation |
 | :--- | :--- |
-| **Algorithmic submission** | Random / low-effort submission due to time constraints. |
+| **Algorithmic submission** | Random / low-effort code due to time constraints. |
 | **Manual submission** | Did not participate. |
-| **Result** | Ranked near the bottom because the round was effectively skipped. |
-| **Reflection** | The round shows the impact of not actively participating, especially because both algorithmic and manual scores contributed to total XIRECs. |
+| **Result** | Ranked near the bottom (3,500 / 3,563 overall) because the round was effectively skipped. |
+| **Reflection** | Because the leaderboard reset at the start of Phase 2 and both the algo and manual scores fed total XIRECs, sitting out Round 3 had an outsized cost. With the vouchers being a genuine options-pricing problem and the manual being a tractable auction, this was a missed opportunity rather than a hard round — the poor result reflects non-participation, not difficulty. |
 
 </details>
 
@@ -579,18 +593,82 @@ Round 4 recovered strongly from the skipped Round 3: **134,387 algorithmic PnL**
 
 ### 🧩 Round 5 Strategy Explanation
 
-Round 5 was not a serious attempt because final projects were due, so I submitted random attempts.
+> **Note:** Round 5 ("Galactic Pavilion") was not a serious attempt — final projects were due, so the submission was low-effort. The official result was a **−100,564 algorithmic loss** and a **+17,880 manual gain**, for a Round 5 total of −82,684 and a final overall score of −13,499. The section below documents what the round was and what the (unsuccessful) submission tried to do, framed honestly around the real outcome.
 
-Suggested notes to include:
+#### Final-Round Result Summary
 
-| Area | Explanation |
+| Area | Result |
 | :--- | :--- |
 | **Previous Total** | 69,185 XIRECs |
-| **Round 5 Total** | -82,684 XIRECs |
-| **Final Score** | -13,499 XIRECs |
-| **Algorithmic Challenge** | -100,564 XIRECs |
+| **Round 5 Total** | −82,684 XIRECs |
+| **Final Overall Score** | −13,499 XIRECs |
+| **Algorithmic Challenge** | −100,564 XIRECs |
 | **Manual Challenge** | +17,880 XIRECs |
-| **Reflection** | The manual component was positive, but the algorithmic component caused a large loss. Since this was a low-effort final-project-week submission, the result does not reflect the stronger Round 1 and Round 2 performance. |
+| **Final Position** | 3,046th |
+
+#### What the Algorithmic Submission Tried
+
+The Round 5 algo traded a large basket of ~50 products (e.g. `GALAXY_SOUNDS_*`, `MICROCHIP_*`, `OXYGEN_SHAKE_*`, `PANEL_*`, `PEBBLES_*`, `ROBOT_*`, `SLEEP_POD_*`, `SNACKPACK_*`, `TRANSLATOR_*`, `UV_VISOR_*`), all with a small per-product position limit of 10. The structure was a crossing-only model with a hardcoded fair value per product per time bucket:
+
+```python
+if t < 100000:
+    arr = TARGET.get(product)
+    bucket = BUCKETS.get(product, 600)
+    idx = int(t // bucket)
+    target = arr[idx] / 2.0
+elif product in FALLBACK_BANDS:
+    lo, hi = FALLBACK_BANDS[product]
+    target = (lo + hi) / 2.0
+```
+
+Each product had its own optimal lookahead bucket size (`BUCKETS`) and a long hardcoded `TARGET` array of per-bucket fair values fit to the visible historical path, halved to recover a mid. On the public path, it crossed the spread — buying asks strictly below `target`, selling bids strictly above — and on the longer hidden path it fell back to coarse `(lo, hi)` bands for a subset of products.
+
+#### Why It Backtested Well But Lost Live
+
+The local backtest on the visible path looked strong (a clean, near-linear climb), but the **live final result was −100,564**. The reason is the same overfitting trap the Round 4 notes already warned about, taken to an extreme: the `TARGET` arrays were tightly fit to the *visible* historical sample path, so on the public replay they reproduced near-perfect fair values. On the hidden final simulation — a different price path — those memorized per-bucket targets no longer matched reality, the `FALLBACK_BANDS` covered only some products and were too coarse, and the crossing-only logic then systematically traded against itself, accumulating losses across 50 products simultaneously. A model that reads as a perfect curve on the data it was fit to is exactly the model most likely to fail out-of-sample, and that's what happened here.
+
+Because this was a rushed final-project-week submission, it didn't get the variance-reduction and gating treatment that made Round 2 and Round 4 robust (e.g. Round 2's overlay price-band gate, Round 4's deliberately coarse hidden-path parameters). The result reflects that lack of polish, not the approach being fundamentally unworkable.
+
+#### Postgame Verification (Per-Product Breakdown)
+
+The postgame submission confirms the official −100,564 result and shows the damage was **broad rather than isolated to one bad bet**: 24 of the 50 products finished net negative, and the losses were spread across the board with a handful of large concentrated losers. The worst and best contributors:
+
+| Worst Products | Final PnL | | Best Products | Final PnL |
+| :--- | ---: | :--- | :--- | ---: |
+| `PEBBLES_M` | −33,891 | | `MICROCHIP_RECTANGLE` | +19,956 |
+| `MICROCHIP_TRIANGLE` | −25,108 | | `ROBOT_MOPPING` | +15,482 |
+| `PEBBLES_XL` | −19,752 | | `TRANSLATOR_GRAPHITE_MIST` | +15,052 |
+| `PEBBLES_S` | −19,191 | | `SLEEP_POD_COTTON` | +10,858 |
+| `PANEL_1X2` | −18,393 | | `TRANSLATOR_SPACE_GRAY` | +9,857 |
+| `OXYGEN_SHAKE_GARLIC` | −14,872 | | `PEBBLES_XS` | +9,091 |
+| `PANEL_4X4` | −14,505 | | `MICROCHIP_SQUARE` | +8,255 |
+| `UV_VISOR_RED` | −13,894 | | `OXYGEN_SHAKE_MORNING_BREATH` | +8,178 |
+
+The fact that nearly half the book lost money — rather than one catastrophic position — is the signature of an overfit fair-value model failing out-of-sample: the hardcoded `TARGET` curves were systematically off on the hidden path across many independent products at once, so the crossing-only logic kept buying "cheap" asks and selling "rich" bids against prices that weren't actually mispriced. No single product blew up; the model was just slightly wrong everywhere, and 50 small biases compounded into a six-figure loss.
+
+#### Manual Challenge: Ignith Market (Buy/Sell Allocation)
+
+The manual challenge was a budget-allocation problem on the Ignith market: split a 1,000,000 budget across ~9 tradable goods, choosing buy or sell and a percentage per good, with a fee scaling by allocation. My submitted book used the full budget (100%, 118,000 in fees) and finished at **+17,880 PnL**.
+
+The winners and losers were mixed:
+
+| Good | Side | Alloc | P&L |
+| :--- | :--- | :--- | :--- |
+| Lava cake | Sell | 10% | +53,353 |
+| Pyroflex cells | Sell | 12% | +9,041 |
+| Thermalite core | Buy | 17% | +8,772 |
+| Sulfur reactor | Buy | 13% | +5,751 |
+| Ashes of the Phoenix | Sell | 10% | −6,496 |
+| Magma ink | Buy | 11% | −9,650 |
+| Scoria paste | Buy | 11% | −10,634 |
+| Volcanic incense | Buy | 6% | −12,343 |
+| Obsidian cutlery | Sell | 10% | −19,916 |
+
+The single Lava cake sell carried the whole book — without that +53,353 the round's manual component would have been deeply negative. Spreading the budget across many goods diversified outcomes but also diluted the edge, and the fee drag (118,000) ate into the gross, leaving a modest net positive.
+
+#### Overall Reflection
+
+Round 5 closed the competition on a low note: the manual was positive but the rushed, overfit algo erased it and then some. The honest takeaway mirrors the whole run — my strongest rounds (1 and 2) were the ones where I gated the hardcoded logic and managed variance, and the weakest were the ones I either skipped (Round 3) or rushed (Round 5). The Round 5 algo is a textbook reminder that a beautiful in-sample backtest is not evidence of a working strategy; the final-simulation result is the only one that counts.
 
 </details>
 
