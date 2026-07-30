@@ -683,7 +683,7 @@ Round 5 closed the competition on a low note: the manual was positive but the ru
 * 🥈 **Team rat_hunters** — 2nd Place — [GitHub Repository](https://github.com/rmtf1111/imc-prosperity-4)
 * **Team Une Baguette Fromage** — 4th Place — [GitHub Repository](https://github.com/Durpie-Git/imc-prosperity-4)
 * **Team DU Trading** — 10th Place — [GitHub Repository](https://github.com/FoxHenderson/imc-prosperity-4)
-* * **Team JaneRT** — 19th Place — [GitHub Repository](https://github.com/heyman7913/imc-prosperity-4)
+* **Team JaneRT** — 19th Place — [GitHub Repository](https://github.com/heyman7913/imc-prosperity-4)
 
 #### IMC Prosperity 3, 2025
 
