@@ -678,6 +678,11 @@ Round 5 closed the competition on a low note: the manual was positive but the ru
 
 *A curated list of repositories from historically top-performing teams to study for algorithmic strategies.*
 
+#### IMC Prosperity 4, 2026
+
+* 🥈 **Team rat_hunters** — 2nd Place — [GitHub Repository](https://github.com/rmtf1111/imc-prosperity-4)
+* **Team DU Trading** — 10th Place — [GitHub Repository](https://github.com/FoxHenderson/imc-prosperity-4)
+
 #### IMC Prosperity 3, 2025
 
 * 🥈 **Team Frankfurt Hedgehogs** — 2nd Place — [GitHub Repository](https://github.com/TimoDiehm/imc-prosperity-3)
