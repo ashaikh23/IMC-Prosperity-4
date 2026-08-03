@@ -679,7 +679,7 @@ Round 5 closed the competition on a low note: the manual was positive but the ru
 *A curated list of repositories from historically top-performing teams to study for algorithmic strategies.*
 
 #### IMC Prosperity 4, 2026
-* 🥇 **Team Seven Deuce Capital** — 1st Place — [GitHub Repository](https://github.com/Seven-Deuce-Capital/imc-prosperity-4-seven-deuce-capital) (* thier team hasn't finished their repo it's a placeholder)
+* 🥇 **Team Seven Deuce Capital** — 1st Place — [GitHub Repository](https://github.com/Seven-Deuce-Capital/imc-prosperity-4-seven-deuce-capital) (* their team hasn't finished their repo it's a placeholder)
 * 🥈 **Team rat_hunters** — 2nd Place — [GitHub Repository](https://github.com/rmtf1111/imc-prosperity-4)
 * **Team Une Baguette Fromage** — 4th Place — [GitHub Repository](https://github.com/Durpie-Git/imc-prosperity-4)
 * **Team DU Trading** — 10th Place — [GitHub Repository](https://github.com/FoxHenderson/imc-prosperity-4)
