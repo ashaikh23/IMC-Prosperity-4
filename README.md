@@ -427,7 +427,7 @@ The manual puzzle was to split a 50,000 XIREC budget across three pillars where 
 - **Scale** grows linearly to 7 at 100% investment.
 - **Speed** is rank-based across all players (0.1 to 0.9 multiplier), so it's a competitive guessing game rather than a fixed function.
 
-Because Research is logarithmic, most of its value is captured well before 100%, so over-investing there is wasteful. Scale is linear, so its marginal value is constant. Speed depends entirely on out-ranking other players. The optimization was to put enough into Research to capture the steep part of the log curve, allocate meaningfully to Scale for its linear payoff, and bid competitively on Speed to land a high rank multiplier — all while keeping `Budget_Used` low enough that the subtracted cost didn't erode the multiplicative gross PnL.
+Because Research is logarithmic, most of its value is captured well before 100%, so over-investing there is wasteful. Scale is linear, so its marginal value is constant. Speed depends entirely on out-ranking other players. The optimization was to put enough into Research to capture the steep part of the log curve, allocate meaningfully to Scale for its linear payoff, and bid competitively on Speed to land a high rank multiplier, all while keeping `Budget_Used` low enough that the subtracted cost didn't erode the multiplicative gross PnL.
 
 ---
 
@@ -465,7 +465,7 @@ The manual challenge ("The Celestial Gardeners' Guild") was a two-bid auction ag
 | **Algorithmic submission** | Random / low-effort code due to time constraints. |
 | **Manual submission** | Did not participate. |
 | **Result** | Ranked near the bottom (3,500 / 3,563 overall) because the round was effectively skipped. |
-| **Reflection** | Because the leaderboard reset at the start of Phase 2 and both the algo and manual scores fed total XIRECs, sitting out Round 3 had an outsized cost. With the vouchers being a genuine options-pricing problem and the manual being a tractable auction, this was a missed opportunity rather than a hard round — the poor result reflects non-participation, not difficulty. |
+| **Reflection** | Because the leaderboard reset at the start of Phase 2 and both the algo and manual scores fed total XIRECs, sitting out Round 3 had an outsized cost. With the vouchers being a genuine options-pricing problem and the manual being a tractable auction, this was a missed opportunity rather than a hard round, the poor result reflects non-participation, not difficulty. |
 
 </details>
 
@@ -526,13 +526,13 @@ A crucial robustness choice was splitting parameters by whether the simulation w
 params = self._public_params(state.timestamp) if state.timestamp <= 100000 else self._post_public_params(state.timestamp)
 ```
 
-The public bands were tightly fit to 10k windows. The `_post_public_params` fallback was **intentionally coarser** (three wide buckets up to 400k / 700k / beyond), because the final simulation runs much longer and overfitting tiny windows there is unreliable. As the code notes, counterparty/mark IDs were most useful not for chasing individual trades but for *discovering that these time regimes existed* in the first place — the IDs revealed the structure, and the bands encoded it.
+The public bands were tightly fit to 10k windows. The `_post_public_params` fallback was **intentionally coarser** (three wide buckets up to 400k / 700k / beyond), because the final simulation runs much longer and overfitting tiny windows there is unreliable. As the code notes, counterparty/mark IDs were most useful not for chasing individual trades but for *discovering that these time regimes existed* in the first place, the IDs revealed the structure, and the bands encoded it.
 
 ---
 
 #### 4. Use of Counterparty Information
 
-The Round 4 twist was disclosed `buyer`/`seller` IDs in the trade history. I used this primarily as a **research signal** rather than a live trading input: studying which participants traded at which times exposed the time-regime boundaries and the recurring fair-value levels, which I then baked into the parameter tables. The live `run` loop itself stayed lean — it didn't branch on counterparty identity, keeping execution fast and avoiding overfitting to specific bots.
+The Round 4 twist was disclosed `buyer`/`seller` IDs in the trade history. I used this primarily as a **research signal** rather than a live trading input: studying which participants traded at which times exposed the time-regime boundaries and the recurring fair-value levels, which I then baked into the parameter tables. The live `run` loop itself stayed lean, it didn't branch on counterparty identity, keeping execution fast and avoiding overfitting to specific bots.
 
 ---
 
@@ -544,7 +544,7 @@ The vouchers were treated as independent delta-1-style products with their own b
 
 #### 6. Manual Challenge: "Vanilla Just Isn't Exotic Enough"
 
-The standalone manual challenge was a one-shot book on `AETHER_CRYSTAL` (spot ≈ 50), simulated as zero-drift GBM at **251% annualized vol** on a discrete 4-steps-per-day grid. The catch: positions are bought/sold at t=0 and held to expiry, marked against the average payoff over 100 simulations — so the goal was positive *expected* PnL with controlled risk, not directional bets.
+The standalone manual challenge was a one-shot book on `AETHER_CRYSTAL` (spot ≈ 50), simulated as zero-drift GBM at **251% annualized vol** on a discrete 4-steps-per-day grid. The catch: positions are bought/sold at t=0 and held to expiry, marked against the average payoff over 100 simulations, so the goal was positive *expected* PnL with controlled risk, not directional bets.
 
 My submitted positions (total investment −737, i.e. a net credit) were:
 
@@ -559,7 +559,7 @@ My submitted positions (total investment −737, i.e. a net credit) were:
 
 The reasoning behind the mix:
 
-The **2-week ATM straddle** (`AC_50_P_2` + `AC_50_C_2` both bought) is a long-volatility position. With 251% annualized vol, the underlying moves enormously over 10 trading days, so a long straddle captures large realized moves in either direction — the dominant edge in an extremely high-vol regime.
+The **2-week ATM straddle** (`AC_50_P_2` + `AC_50_C_2` both bought) is a long-volatility position. With 251% annualized vol, the underlying moves enormously over 10 trading days, so a long straddle captures large realized moves in either direction, the dominant edge in an extremely high-vol regime.
 
 **Selling the chooser** (`AC 50 CO`) and the **3-week OTM call** (`AC_60_C`) financed the straddle. The chooser is expensive because optionality-to-choose is valuable, so selling it harvests premium; pairing it against the long straddle partially offsets the vega and reduces unhedged exposure.
 
@@ -567,7 +567,7 @@ The **2-week ATM straddle** (`AC_50_P_2` + `AC_50_C_2` both bought) is a long-vo
 
 **Buying the knock-out put cheaply** (`AC 45 KO` at ~0.175, 500 units) was a low-cost convex hedge: it pays like a put unless the barrier is breached, so it provided downside protection at minimal cost while the high contract-size multiplier (3000) scaled the payoff.
 
-The overall book was structured as long realized volatility, financed by selling richer optionality, with a cheap knock-out as a tail hedge — net credit at entry.
+The overall book was structured as long realized volatility, financed by selling richer optionality, with a cheap knock-out as a tail hedge, net credit at entry.
 
 ---
 
@@ -584,7 +584,7 @@ The overall book was structured as long realized volatility, financed by selling
 
 #### 8. Result Reflection
 
-Round 4 recovered strongly from the skipped Round 3: **134,387 algorithmic PnL**, ranking 1,236th on the algo challenge, with the equity curve grinding upward through the whole session. The take-liquidity-only, time-bucketed band approach proved robust precisely because it was simple and avoided passive adverse selection. The biggest lesson was that the disclosed counterparty IDs were more valuable as a *reverse-engineering tool* for discovering regime structure than as a live input — and that on the longer hidden path, deliberately coarsening the parameters protected against overfitting.
+Round 4 recovered strongly from the skipped Round 3: **134,387 algorithmic PnL**, ranking 1,236th on the algo challenge, with the equity curve grinding upward through the whole session. The take-liquidity-only, time-bucketed band approach proved robust precisely because it was simple and avoided passive adverse selection. The biggest lesson was that the disclosed counterparty IDs were more valuable as a *reverse-engineering tool* for discovering regime structure than as a live input, and that on the longer hidden path, deliberately coarsening the parameters protected against overfitting.
 
 </details>
 
@@ -593,7 +593,7 @@ Round 4 recovered strongly from the skipped Round 3: **134,387 algorithmic PnL**
 
 ### 🧩 Round 5 Strategy Explanation
 
-> **Note:** Round 5 ("Galactic Pavilion") was not a serious attempt — final projects were due, so the submission was low-effort. The official result was a **−100,564 algorithmic loss** and a **+17,880 manual gain**, for a Round 5 total of −82,684 and a final overall score of −13,499. The section below documents what the round was and what the (unsuccessful) submission tried to do, framed honestly around the real outcome.
+> **Note:** Round 5 ("Galactic Pavilion") was not a serious attempt, final projects were due, so the submission was low-effort. The official result was a **−100,564 algorithmic loss** and a **+17,880 manual gain**, for a Round 5 total of −82,684 and a final overall score of −13,499. The section below documents what the round was and what the (unsuccessful) submission tried to do, framed honestly around the real outcome.
 
 #### Final-Round Result Summary
 
@@ -621,11 +621,11 @@ elif product in FALLBACK_BANDS:
     target = (lo + hi) / 2.0
 ```
 
-Each product had its own optimal lookahead bucket size (`BUCKETS`) and a long hardcoded `TARGET` array of per-bucket fair values fit to the visible historical path, halved to recover a mid. On the public path, it crossed the spread — buying asks strictly below `target`, selling bids strictly above — and on the longer hidden path it fell back to coarse `(lo, hi)` bands for a subset of products.
+Each product had its own optimal lookahead bucket size (`BUCKETS`) and a long hardcoded `TARGET` array of per-bucket fair values fit to the visible historical path, halved to recover a mid. On the public path, it crossed the spread, buying asks strictly below `target`, selling bids strictly above, and on the longer hidden path it fell back to coarse `(lo, hi)` bands for a subset of products.
 
 #### Why It Backtested Well But Lost Live
 
-The local backtest on the visible path looked strong (a clean, near-linear climb), but the **live final result was −100,564**. The reason is the same overfitting trap the Round 4 notes already warned about, taken to an extreme: the `TARGET` arrays were tightly fit to the *visible* historical sample path, so on the public replay they reproduced near-perfect fair values. On the hidden final simulation — a different price path — those memorized per-bucket targets no longer matched reality, the `FALLBACK_BANDS` covered only some products and were too coarse, and the crossing-only logic then systematically traded against itself, accumulating losses across 50 products simultaneously. A model that reads as a perfect curve on the data it was fit to is exactly the model most likely to fail out-of-sample, and that's what happened here.
+The local backtest on the visible path looked strong (a clean, near-linear climb), but the **live final result was −100,564**. The reason is the same overfitting trap the Round 4 notes already warned about, taken to an extreme: the `TARGET` arrays were tightly fit to the *visible* historical sample path, so on the public replay they reproduced near-perfect fair values. On the hidden final simulation, a different price path, those memorized per-bucket targets no longer matched reality, the `FALLBACK_BANDS` covered only some products and were too coarse, and the crossing-only logic then systematically traded against itself, accumulating losses across 50 products simultaneously. A model that reads as a perfect curve on the data it was fit to is exactly the model most likely to fail out-of-sample, and that's what happened here.
 
 Because this was a rushed final-project-week submission, it didn't get the variance-reduction and gating treatment that made Round 2 and Round 4 robust (e.g. Round 2's overlay price-band gate, Round 4's deliberately coarse hidden-path parameters). The result reflects that lack of polish, not the approach being fundamentally unworkable.
 
@@ -644,7 +644,7 @@ The postgame submission confirms the official −100,564 result and shows the da
 | `PANEL_4X4` | −14,505 | | `MICROCHIP_SQUARE` | +8,255 |
 | `UV_VISOR_RED` | −13,894 | | `OXYGEN_SHAKE_MORNING_BREATH` | +8,178 |
 
-The fact that nearly half the book lost money — rather than one catastrophic position — is the signature of an overfit fair-value model failing out-of-sample: the hardcoded `TARGET` curves were systematically off on the hidden path across many independent products at once, so the crossing-only logic kept buying "cheap" asks and selling "rich" bids against prices that weren't actually mispriced. No single product blew up; the model was just slightly wrong everywhere, and 50 small biases compounded into a six-figure loss.
+The fact that nearly half the book lost money, rather than one catastrophic position, is the signature of an overfit fair-value model failing out-of-sample: the hardcoded `TARGET` curves were systematically off on the hidden path across many independent products at once, so the crossing-only logic kept buying "cheap" asks and selling "rich" bids against prices that weren't actually mispriced. No single product blew up; the model was just slightly wrong everywhere, and 50 small biases compounded into a six-figure loss.
 
 #### Manual Challenge: Ignith Market (Buy/Sell Allocation)
 
@@ -664,11 +664,11 @@ The winners and losers were mixed:
 | Volcanic incense | Buy | 6% | −12,343 |
 | Obsidian cutlery | Sell | 10% | −19,916 |
 
-The single Lava cake sell carried the whole book — without that +53,353 the round's manual component would have been deeply negative. Spreading the budget across many goods diversified outcomes but also diluted the edge, and the fee drag (118,000) ate into the gross, leaving a modest net positive.
+The single Lava cake sell carried the whole book, without that +53,353 the round's manual component would have been deeply negative. Spreading the budget across many goods diversified outcomes but also diluted the edge, and the fee drag (118,000) ate into the gross, leaving a modest net positive.
 
 #### Overall Reflection
 
-Round 5 closed the competition on a low note: the manual was positive but the rushed, overfit algo erased it and then some. The honest takeaway mirrors the whole run — my strongest rounds (1 and 2) were the ones where I gated the hardcoded logic and managed variance, and the weakest were the ones I either skipped (Round 3) or rushed (Round 5). The Round 5 algo is a textbook reminder that a beautiful in-sample backtest is not evidence of a working strategy; the final-simulation result is the only one that counts.
+Round 5 closed the competition on a low note: the manual was positive but the rushed, overfit algo erased it and then some. The honest takeaway mirrors the whole run, my strongest rounds (1 and 2) were the ones where I gated the hardcoded logic and managed variance, and the weakest were the ones I either skipped (Round 3) or rushed (Round 5). The Round 5 algo is a textbook reminder that a beautiful in-sample backtest is not evidence of a working strategy; the final-simulation result is the only one that counts.
 
 </details>
 
@@ -701,7 +701,7 @@ Round 5 closed the competition on a low note: the manual was positive but the ru
 
 #### IMC Prosperity 1, 2023
 
-* 🥈 **Stanford Cardinal** — 2nd Place — [GitHub Repository](https://github.com/ShubhamAnandJain/IMC-Prosperity-2023-Stanford-Cardinal)
+* 🥈 **Team Stanford Cardinal** — 2nd Place — [GitHub Repository](https://github.com/ShubhamAnandJain/IMC-Prosperity-2023-Stanford-Cardinal)
 
 ---
 
